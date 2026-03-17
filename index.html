@@ -1,0 +1,1498 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>ICNHTR 2026 — International Congress on Natural Hazards and Territorial Resilience</title>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+  <style>
+    :root {
+      --primary: #1a5c38;
+      --primary-light: #2d8653;
+      --primary-dark: #0f3d25;
+      --accent: #4caf50;
+      --accent2: #f5a623;
+      --gold: #d4a017;
+      --dark: #0d1f13;
+      --light: #f4f9f6;
+      --muted: #5a7a65;
+      --white: #ffffff;
+      --grad1: linear-gradient(135deg, #0f3d25 0%, #1a5c38 50%, #2d8653 100%);
+      --grad2: linear-gradient(135deg, #1a5c38, #4caf50);
+      --grad3: linear-gradient(135deg, #d4a017, #f5a623);
+      --shadow: 0 20px 60px rgba(15,61,37,0.15);
+      --shadow-lg: 0 30px 80px rgba(15,61,37,0.25);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Outfit', sans-serif;
+      color: var(--dark);
+      background: var(--light);
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+
+    /* ===== SCROLL PROGRESS ===== */
+    #scroll-progress {
+      position: fixed; top: 0; left: 0; height: 4px; width: 0%;
+      background: linear-gradient(90deg, #1a5c38, #4caf50, #d4a017);
+      z-index: 9999;
+      box-shadow: 0 0 12px rgba(76,175,80,0.6);
+      transition: width 0.1s linear;
+    }
+
+    /* ===== PARTICLES ===== */
+    #particles {
+      position: fixed; top: 0; left: 0;
+      width: 100%; height: 100%;
+      pointer-events: none; z-index: 0;
+      overflow: hidden;
+    }
+    .particle {
+      position: absolute; border-radius: 50%;
+      background: rgba(76,175,80,0.08);
+      animation: floatParticle linear infinite;
+    }
+    @keyframes floatParticle {
+      0% { transform: translateY(100vh) rotate(0deg); opacity: 0; }
+      10% { opacity: 1; }
+      90% { opacity: 1; }
+      100% { transform: translateY(-100px) rotate(720deg); opacity: 0; }
+    }
+
+    /* ===== NAV ===== */
+    nav {
+      position: fixed; top: 4px; left: 0; right: 0; z-index: 1000;
+      background: rgba(15,61,37,0.92);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid rgba(76,175,80,0.2);
+      box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+    }
+    .nav-inner {
+      max-width: 1300px; margin: 0 auto;
+      display: flex; align-items: center;
+      padding: 10px 24px; gap: 8px; flex-wrap: wrap;
+    }
+    .nav-logo {
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 700; font-size: 1.1rem;
+      color: white; margin-right: 16px;
+      background: var(--grad3);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      white-space: nowrap;
+    }
+    .nav-links { display: flex; flex-wrap: wrap; gap: 4px; }
+    .nav-links a {
+      color: rgba(255,255,255,0.8); text-decoration: none;
+      font-size: 0.78rem; padding: 5px 10px; border-radius: 999px;
+      transition: all 0.3s ease;
+      border: 1px solid transparent;
+    }
+    .nav-links a:hover {
+      background: linear-gradient(135deg, #1a5c38, #4caf50);
+      color: white; border-color: rgba(76,175,80,0.4);
+      transform: translateY(-1px);
+      box-shadow: 0 4px 12px rgba(76,175,80,0.3);
+    }
+
+    /* ===== HERO ===== */
+    .hero {
+      min-height: 100vh;
+      background: var(--grad1);
+      position: relative; overflow: hidden;
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      padding: 120px 24px 0;
+    }
+    .hero::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: url('https://images.unsplash.com/photo-1469474968028-56623f02e42e?q=80&w=1600&auto=format&fit=crop') center/cover no-repeat;
+      opacity: 0.12;
+    }
+    .hero-shapes span {
+      position: absolute; border-radius: 50%;
+      background: rgba(76,175,80,0.08);
+      animation: morphShape 8s ease-in-out infinite;
+    }
+    .hero-shapes span:nth-child(1) { width: 600px; height: 600px; top: -200px; right: -200px; animation-delay: 0s; }
+    .hero-shapes span:nth-child(2) { width: 400px; height: 400px; bottom: -100px; left: -100px; animation-delay: 2s; }
+    .hero-shapes span:nth-child(3) { width: 300px; height: 300px; top: 50%; left: 30%; animation-delay: 4s; }
+    @keyframes morphShape {
+      0%, 100% { transform: scale(1) rotate(0deg); }
+      50% { transform: scale(1.1) rotate(10deg); }
+    }
+
+    .hero-content { position: relative; z-index: 2; text-align: center; max-width: 900px; }
+    .hero-badge {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: rgba(212,160,23,0.2);
+      border: 1px solid rgba(212,160,23,0.4);
+      color: #f5c842; padding: 8px 20px; border-radius: 999px;
+      font-size: 0.85rem; font-weight: 600; margin-bottom: 24px;
+      animation: pulseBadge 2s ease-in-out infinite;
+    }
+    @keyframes pulseBadge {
+      0%, 100% { box-shadow: 0 0 0 0 rgba(212,160,23,0.3); }
+      50% { box-shadow: 0 0 0 10px rgba(212,160,23,0); }
+    }
+    .hero-organizer {
+      color: rgba(255,255,255,0.75); font-size: 1rem;
+      font-style: italic; margin-bottom: 16px;
+    }
+    .hero h1 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: clamp(2rem, 5vw, 3.8rem);
+      font-weight: 800; color: white; line-height: 1.15;
+      margin-bottom: 16px;
+    }
+    .hero h1 span {
+      background: var(--grad3);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .hero-acronym {
+      font-size: clamp(1.2rem, 3vw, 1.8rem);
+      color: rgba(255,255,255,0.85);
+      font-weight: 600; margin-bottom: 16px;
+    }
+    .hero-theme {
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.15);
+      border-radius: 16px; padding: 16px 32px;
+      margin: 16px auto;
+      backdrop-filter: blur(10px);
+      max-width: 700px;
+    }
+    .hero-theme p:first-child { color: #f5c842; font-weight: 600; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px; }
+    .hero-theme p:last-child { color: white; font-size: 1.1rem; font-weight: 500; }
+    .hero-date {
+      color: rgba(255,255,255,0.9);
+      font-size: 1.1rem; font-weight: 600;
+      margin: 12px 0 28px;
+      display: flex; align-items: center; justify-content: center; gap: 8px;
+    }
+    .hero-date span { background: rgba(76,175,80,0.3); padding: 4px 16px; border-radius: 999px; }
+    .hero-stats {
+      display: flex; justify-content: center; gap: 32px; flex-wrap: wrap;
+      margin-bottom: 32px;
+    }
+    .stat-item {
+      text-align: center;
+      background: rgba(255,255,255,0.07);
+      border: 1px solid rgba(255,255,255,0.1);
+      padding: 16px 28px; border-radius: 16px;
+      backdrop-filter: blur(10px);
+      transition: transform 0.3s ease;
+    }
+    .stat-item:hover { transform: translateY(-4px); }
+    .stat-num {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 2rem; font-weight: 800;
+      background: var(--grad3);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .stat-label { color: rgba(255,255,255,0.7); font-size: 0.85rem; }
+    .hero-btns { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; margin-bottom: 16px; }
+    .btn-primary {
+      background: var(--grad2);
+      color: white; padding: 14px 32px; border-radius: 999px;
+      text-decoration: none; font-weight: 700; font-size: 1rem;
+      box-shadow: 0 8px 24px rgba(76,175,80,0.4);
+      transition: all 0.3s ease; position: relative; overflow: hidden;
+    }
+    .btn-primary::after {
+      content: ''; position: absolute; inset: 0;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+      transform: translateX(-100%);
+      transition: transform 0.5s ease;
+    }
+    .btn-primary:hover::after { transform: translateX(100%); }
+    .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 12px 32px rgba(76,175,80,0.5); }
+    .btn-secondary {
+      background: rgba(255,255,255,0.1);
+      border: 2px solid rgba(255,255,255,0.3);
+      color: white; padding: 14px 32px; border-radius: 999px;
+      text-decoration: none; font-weight: 600; font-size: 1rem;
+      transition: all 0.3s ease;
+    }
+    .btn-secondary:hover { background: rgba(255,255,255,0.2); transform: translateY(-3px); }
+
+    /* ===== CAROUSEL ===== */
+    .carousel-section {
+      background: var(--primary-dark);
+      padding: 8px 0; position: relative;
+      border-top: 2px solid rgba(76,175,80,0.3);
+      border-bottom: 2px solid rgba(76,175,80,0.3);
+    }
+    .carousel-track { overflow: hidden; }
+    .carousel-inner {
+      display: flex; gap: 20px; width: max-content;
+      padding: 16px 20px;
+      animation: scrollCarousel 35s linear infinite;
+    }
+    .carousel-inner:hover { animation-play-state: paused; }
+    .carousel-card {
+      position: relative; flex-shrink: 0;
+      width: 340px; height: 220px; border-radius: 20px; overflow: hidden;
+      border: 2px solid rgba(76,175,80,0.25);
+      box-shadow: 0 16px 40px rgba(0,0,0,0.4);
+      transition: transform 0.4s ease;
+    }
+    .carousel-card:hover { transform: scale(1.04) translateY(-6px); }
+    .carousel-card img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.4s; }
+    .carousel-card:hover img { transform: scale(1.08); }
+    .carousel-overlay {
+      position: absolute; bottom: 0; left: 0; right: 0;
+      background: linear-gradient(transparent, rgba(10,30,15,0.85));
+      padding: 16px; color: white; font-size: 0.85rem; font-weight: 500;
+    }
+    @keyframes scrollCarousel {
+      from { transform: translateX(0); }
+      to { transform: translateX(-50%); }
+    }
+
+    /* ===== MAIN ===== */
+    main {
+      max-width: 1200px; margin: 0 auto;
+      padding: 60px 24px; position: relative; z-index: 1;
+    }
+
+    /* ===== SECTIONS ===== */
+    .section {
+      background: white; border-radius: 24px;
+      padding: 40px; margin-bottom: 28px;
+      box-shadow: var(--shadow);
+      border: 1px solid rgba(26,92,56,0.08);
+      position: relative; overflow: hidden;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      opacity: 0; transform: translateY(30px);
+    }
+    .section.visible {
+      opacity: 1; transform: translateY(0);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+    .section:hover { transform: translateY(-4px); box-shadow: var(--shadow-lg); }
+    .section::before {
+      content: ''; position: absolute;
+      top: 0; left: 0; right: 0; height: 4px;
+      background: var(--grad2);
+    }
+    .section-icon {
+      font-size: 2.5rem; margin-bottom: 12px; display: block;
+    }
+    .section h2 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1.7rem; font-weight: 700;
+      color: var(--primary-dark); margin-bottom: 20px;
+      display: flex; align-items: center; gap: 10px;
+    }
+    .section h2::after {
+      content: ''; flex: 1; height: 2px;
+      background: linear-gradient(90deg, rgba(26,92,56,0.2), transparent);
+      margin-left: 12px;
+    }
+    .section p { color: var(--muted); line-height: 1.8; }
+    .section ul { padding-left: 0; list-style: none; color: var(--muted); }
+    .section ul li {
+      padding: 8px 0 8px 28px; position: relative; border-bottom: 1px solid rgba(0,0,0,0.04);
+    }
+    .section ul li::before {
+      content: '▶'; position: absolute; left: 0;
+      color: var(--accent); font-size: 0.6rem; top: 14px;
+    }
+
+    /* ===== GRID ===== */
+    .grid-2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
+    .grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 20px; }
+    .grid-4 { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 16px; }
+
+    /* ===== THEME CARDS ===== */
+    .theme-card {
+      background: linear-gradient(135deg, #f4f9f6, #e8f5e9);
+      border: 1px solid rgba(76,175,80,0.2);
+      border-radius: 16px; padding: 20px;
+      transition: all 0.3s ease; text-align: center;
+    }
+    .theme-card:hover {
+      background: var(--grad2); color: white;
+      transform: translateY(-6px);
+      box-shadow: 0 16px 40px rgba(76,175,80,0.3);
+    }
+    .theme-card:hover p { color: rgba(255,255,255,0.9); }
+    .theme-icon { font-size: 2rem; margin-bottom: 10px; display: block; }
+    .theme-card h3 { font-size: 0.95rem; font-weight: 700; color: var(--primary-dark); margin-bottom: 6px; }
+    .theme-card:hover h3 { color: white; }
+    .theme-card p { font-size: 0.82rem; color: var(--muted); }
+
+    /* ===== COMMITTEE ===== */
+    .committee-item {
+      display: flex; align-items: center; gap: 16px;
+      padding: 14px; border-radius: 14px;
+      background: linear-gradient(135deg, #f4f9f6, #fff);
+      border: 1px solid rgba(76,175,80,0.1);
+      transition: all 0.3s ease;
+    }
+    .committee-item:hover {
+      background: var(--grad2); transform: translateX(6px);
+      box-shadow: 0 8px 24px rgba(76,175,80,0.25);
+    }
+    .committee-item:hover .c-name, .committee-item:hover .c-role { color: white; }
+    .c-avatar {
+      width: 44px; height: 44px; border-radius: 50%;
+      background: var(--grad2); color: white;
+      display: flex; align-items: center; justify-content: center;
+      font-weight: 700; font-size: 0.85rem; flex-shrink: 0;
+    }
+    .c-name { font-weight: 600; color: var(--primary-dark); font-size: 0.95rem; }
+    .c-role { font-size: 0.8rem; color: var(--muted); }
+
+    /* ===== PROFILE CIRCLES ===== */
+    .profiles-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 28px; margin-top: 10px;
+    }
+    .profile-card {
+      text-align: center; padding: 28px 16px;
+      border-radius: 20px;
+      background: linear-gradient(135deg, #f4f9f6, #e8f5e9);
+      border: 1px solid rgba(76,175,80,0.15);
+      transition: all 0.4s ease; cursor: pointer;
+    }
+    .profile-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 24px 60px rgba(26,92,56,0.2);
+      background: white;
+    }
+    .profile-photo-wrap {
+      position: relative; width: 120px; height: 120px;
+      margin: 0 auto 16px;
+    }
+    .profile-ring {
+      position: absolute; inset: -6px;
+      border-radius: 50%;
+      background: conic-gradient(var(--accent), var(--primary), var(--accent2), var(--accent));
+      animation: rotateRing 4s linear infinite;
+      opacity: 0; transition: opacity 0.3s;
+    }
+    .profile-card:hover .profile-ring { opacity: 1; }
+    @keyframes rotateRing {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+    .profile-photo {
+      position: relative; z-index: 1;
+      width: 120px; height: 120px; border-radius: 50%;
+      background: var(--grad1);
+      border: 4px solid white;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.8rem; font-weight: 800; color: white;
+      overflow: hidden;
+      box-shadow: 0 8px 24px rgba(26,92,56,0.3);
+      font-family: 'Space Grotesk', sans-serif;
+      transition: transform 0.3s ease;
+    }
+    .profile-card:hover .profile-photo { transform: scale(1.05); }
+    .profile-photo img {
+      width: 100%; height: 100%; object-fit: cover; border-radius: 50%;
+    }
+    .profile-name {
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 700; font-size: 1rem; color: var(--primary-dark);
+      margin-bottom: 4px;
+    }
+    .profile-title {
+      font-size: 0.82rem; color: var(--accent);
+      font-weight: 600; margin-bottom: 4px;
+    }
+    .profile-affil {
+      font-size: 0.78rem; color: var(--muted);
+    }
+    .profile-badge {
+      display: inline-block; margin-top: 8px;
+      background: var(--grad2); color: white;
+      font-size: 0.72rem; padding: 3px 12px;
+      border-radius: 999px; font-weight: 600;
+    }
+
+    /* ===== GUIDELINES ===== */
+    .guideline-step {
+      display: flex; gap: 16px; align-items: flex-start;
+      padding: 16px; border-radius: 14px;
+      background: #f4f9f6;
+      border-left: 4px solid var(--accent);
+      margin-bottom: 12px;
+      transition: all 0.3s ease;
+    }
+    .guideline-step:hover { background: #e8f5e9; transform: translateX(6px); }
+    .step-num {
+      width: 36px; height: 36px; border-radius: 50%;
+      background: var(--grad2); color: white;
+      display: flex; align-items: center; justify-content: center;
+      font-weight: 800; font-size: 0.9rem; flex-shrink: 0;
+    }
+    .step-text h4 { color: var(--primary-dark); font-weight: 700; margin-bottom: 4px; }
+    .step-text p { font-size: 0.9rem; color: var(--muted); }
+
+    /* ===== FEES ===== */
+    .fee-cards {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 20px; margin-top: 8px;
+    }
+    .fee-card {
+      border-radius: 20px; padding: 28px; text-align: center;
+      border: 2px solid rgba(76,175,80,0.15);
+      transition: all 0.3s ease; background: white;
+      position: relative; overflow: hidden;
+    }
+    .fee-card.featured {
+      background: var(--grad1); color: white;
+      border-color: transparent;
+      box-shadow: 0 20px 50px rgba(26,92,56,0.35);
+      transform: scale(1.04);
+    }
+    .fee-ribbon {
+      position: absolute; top: 16px; right: -8px;
+      background: var(--grad3); color: white;
+      font-size: 0.72rem; font-weight: 700;
+      padding: 4px 20px 4px 12px;
+      border-radius: 999px 0 0 999px;
+      box-shadow: 0 4px 12px rgba(212,160,23,0.4);
+    }
+    .fee-card:hover:not(.featured) { transform: translateY(-6px); box-shadow: var(--shadow); }
+    .fee-icon { font-size: 2.5rem; margin-bottom: 10px; }
+    .fee-type { font-size: 1.1rem; font-weight: 700; color: var(--primary-dark); margin-bottom: 16px; }
+    .fee-card.featured .fee-type { color: white; }
+    .fee-row {
+      display: flex; justify-content: space-between;
+      padding: 8px 0; border-bottom: 1px solid rgba(0,0,0,0.06);
+      font-size: 0.9rem;
+    }
+    .fee-card.featured .fee-row { border-color: rgba(255,255,255,0.15); color: rgba(255,255,255,0.9); }
+    .fee-amount { font-weight: 700; color: var(--primary); }
+    .fee-card.featured .fee-amount { color: #f5c842; }
+
+    /* ===== DATES TIMELINE ===== */
+    .timeline { position: relative; padding-left: 40px; }
+    .timeline::before {
+      content: ''; position: absolute;
+      left: 14px; top: 10px; bottom: 10px; width: 2px;
+      background: linear-gradient(to bottom, var(--accent), var(--gold));
+      border-radius: 2px;
+    }
+    .timeline-item {
+      position: relative; margin-bottom: 20px;
+      padding: 16px 20px; border-radius: 14px;
+      background: linear-gradient(135deg, #f4f9f6, #fff);
+      border: 1px solid rgba(76,175,80,0.12);
+      transition: all 0.3s ease;
+    }
+    .timeline-item:hover { transform: translateX(6px); box-shadow: var(--shadow); }
+    .timeline-dot {
+      position: absolute; left: -33px; top: 50%;
+      transform: translateY(-50%);
+      width: 16px; height: 16px; border-radius: 50%;
+      background: var(--grad2);
+      border: 3px solid white;
+      box-shadow: 0 0 0 3px rgba(76,175,80,0.3);
+    }
+    .timeline-date { font-weight: 800; color: var(--primary); font-size: 1rem; }
+    .timeline-label { color: var(--muted); font-size: 0.9rem; }
+    .status-badge {
+      display: inline-block; padding: 2px 10px;
+      border-radius: 999px; font-size: 0.72rem; font-weight: 700;
+      margin-top: 4px;
+    }
+    .status-open { background: #dcfce7; color: #166534; }
+    .status-upcoming { background: #fef3c7; color: #92400e; }
+
+    /* ===== FORMAT ===== */
+    .format-item {
+      display: flex; align-items: center; gap: 16px;
+      padding: 16px; border-radius: 14px;
+      background: #f4f9f6; border: 1px solid rgba(76,175,80,0.1);
+      margin-bottom: 12px; transition: all 0.3s ease;
+    }
+    .format-item:hover { background: var(--grad2); transform: translateX(8px); }
+    .format-item:hover .format-text, .format-item:hover .format-sub { color: white; }
+    .format-icon-box {
+      width: 50px; height: 50px; border-radius: 12px;
+      background: var(--grad1); color: white;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.4rem; flex-shrink: 0;
+    }
+    .format-text { font-weight: 700; color: var(--primary-dark); }
+    .format-sub { font-size: 0.85rem; color: var(--muted); }
+
+    /* ===== INDEXATION ===== */
+    .index-grid {
+      display: flex; flex-wrap: wrap; gap: 16px; margin-top: 8px;
+    }
+    .index-badge {
+      background: white; border: 2px solid rgba(26,92,56,0.15);
+      border-radius: 14px; padding: 12px 24px;
+      display: flex; align-items: center; gap: 10px;
+      font-weight: 700; font-size: 1rem;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    }
+    .index-badge:hover { transform: translateY(-4px); box-shadow: var(--shadow); border-color: var(--accent); }
+    .index-badge span { font-size: 1.5rem; }
+
+    /* ===== SPONSORS ===== */
+    .sponsor-tier { margin-bottom: 28px; }
+    .tier-label {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 0.85rem; font-weight: 700;
+      text-transform: uppercase; letter-spacing: 2px;
+      margin-bottom: 12px; padding: 6px 16px;
+      display: inline-block; border-radius: 999px;
+    }
+    .tier-platinum .tier-label { background: linear-gradient(135deg, #1a1a2e, #16213e); color: #e0e0e0; }
+    .tier-gold .tier-label { background: var(--grad3); color: white; }
+    .tier-silver .tier-label { background: linear-gradient(135deg, #607d8b, #90a4ae); color: white; }
+    .tier-media .tier-label { background: linear-gradient(135deg, #1a5c38, #4caf50); color: white; }
+    .sponsor-logos { display: flex; flex-wrap: wrap; gap: 12px; }
+    .sponsor-logo {
+      background: white; border: 2px solid rgba(26,92,56,0.1);
+      border-radius: 14px; padding: 14px 28px;
+      font-weight: 800; font-size: 1rem;
+      transition: all 0.3s ease;
+      display: flex; align-items: center; gap: 8px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.04);
+    }
+    .sponsor-logo:hover { transform: translateY(-4px); box-shadow: var(--shadow); border-color: var(--accent); }
+
+    /* ===== CONTACT ===== */
+    .contact-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 24px; margin-top: 8px;
+    }
+    .contact-card {
+      background: linear-gradient(135deg, #f4f9f6, #e8f5e9);
+      border-radius: 20px; padding: 28px;
+      border: 1px solid rgba(76,175,80,0.15);
+      transition: all 0.3s ease;
+    }
+    .contact-card:hover { transform: translateY(-6px); box-shadow: var(--shadow); }
+    .contact-card h3 {
+      color: var(--primary-dark); font-weight: 700;
+      margin-bottom: 16px; font-size: 1.1rem;
+      display: flex; align-items: center; gap: 8px;
+    }
+    .contact-row { display: flex; align-items: flex-start; gap: 10px; margin-bottom: 12px; }
+    .contact-icon { font-size: 1.1rem; flex-shrink: 0; margin-top: 2px; }
+    .contact-text { color: var(--muted); font-size: 0.92rem; }
+    .contact-text a { color: var(--primary); text-decoration: none; font-weight: 600; }
+    .contact-text a:hover { color: var(--accent); }
+
+    /* ===== IMPACT STATS ===== */
+    .impact-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 16px; margin-top: 12px;
+    }
+    .impact-card {
+      text-align: center; padding: 24px;
+      border-radius: 18px; background: var(--grad1);
+      color: white; transition: all 0.3s ease;
+    }
+    .impact-card:hover { transform: scale(1.05); }
+    .impact-num { font-size: 2.4rem; font-weight: 800; color: #f5c842; }
+    .impact-label { font-size: 0.85rem; opacity: 0.85; }
+
+    /* ===== FAB ===== */
+    .fab {
+      position: fixed; bottom: 32px; right: 32px;
+      width: 60px; height: 60px; border-radius: 50%;
+      background: var(--grad2);
+      color: white; font-size: 1.5rem;
+      display: flex; align-items: center; justify-content: center;
+      text-decoration: none; z-index: 999;
+      box-shadow: 0 8px 24px rgba(76,175,80,0.5);
+      transition: all 0.3s ease;
+    }
+    .fab:hover { transform: rotate(90deg) scale(1.1); box-shadow: 0 12px 32px rgba(76,175,80,0.6); }
+
+    /* ===== FOOTER ===== */
+    footer {
+      background: var(--grad1);
+      color: white; text-align: center;
+      padding: 48px 24px; position: relative; overflow: hidden;
+    }
+    footer::before {
+      content: ''; position: absolute; inset: 0;
+      background: url('https://images.unsplash.com/photo-1469474968028-56623f02e42e?q=80&w=1600') center/cover;
+      opacity: 0.05;
+    }
+    .footer-content { position: relative; z-index: 1; }
+    .footer-logo {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1.6rem; font-weight: 800;
+      margin-bottom: 8px;
+      background: var(--grad3);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .footer-tagline { color: rgba(255,255,255,0.7); margin-bottom: 24px; }
+    .footer-socials { display: flex; justify-content: center; gap: 12px; margin-bottom: 24px; }
+    .social-btn {
+      width: 44px; height: 44px; border-radius: 50%;
+      background: rgba(255,255,255,0.1);
+      border: 1px solid rgba(255,255,255,0.2);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.1rem; text-decoration: none;
+      transition: all 0.3s ease;
+    }
+    .social-btn:hover { background: var(--grad3); transform: translateY(-4px); }
+    .footer-copy { color: rgba(255,255,255,0.5); font-size: 0.85rem; }
+
+    /* ===== ORGANIZER LOGOS ===== */
+    .org-logos {
+      display: flex; flex-wrap: wrap; gap: 16px;
+      align-items: center; margin-top: 20px;
+    }
+    .org-logo-item {
+      background: #f4f9f6; border: 2px solid rgba(76,175,80,0.15);
+      border-radius: 14px; padding: 12px 20px;
+      font-weight: 700; font-size: 0.85rem; color: var(--primary-dark);
+      display: flex; align-items: center; gap: 8px;
+      transition: all 0.3s ease;
+    }
+    .org-logo-item:hover { background: var(--grad2); color: white; transform: translateY(-3px); }
+
+    /* ===== CTA BTN ===== */
+    .cta {
+      display: inline-block; margin-top: 16px;
+      background: var(--grad2); color: white;
+      padding: 12px 28px; border-radius: 999px;
+      text-decoration: none; font-weight: 700;
+      font-size: 0.95rem;
+      box-shadow: 0 6px 20px rgba(76,175,80,0.35);
+      transition: all 0.3s ease;
+    }
+    .cta:hover { transform: translateY(-3px); box-shadow: 0 10px 28px rgba(76,175,80,0.5); }
+
+    /* ===== INFO BOX ===== */
+    .info-box {
+      background: linear-gradient(135deg, #e8f5e9, #f4f9f6);
+      border: 1px solid rgba(76,175,80,0.2);
+      border-radius: 16px; padding: 20px 24px;
+      margin-top: 16px;
+    }
+    .info-box p { color: var(--muted); font-size: 0.95rem; }
+    .info-box strong { color: var(--primary-dark); }
+
+    @media (max-width: 768px) {
+      .nav-inner { padding: 8px 16px; }
+      .hero { padding: 100px 16px 0; }
+      .hero h1 { font-size: 1.8rem; }
+      .section { padding: 24px 20px; }
+      .profiles-grid { grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 16px; }
+    }
+/*-----------photos------------*/
+  </style>
+</head>
+<body>
+
+<!-- Scroll Progress -->
+<div id="scroll-progress"></div>
+
+<!-- Particles -->
+<div id="particles"></div>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-inner">
+    <div class="nav-logo">ICNHTR 2026</div>
+    <div class="nav-links">
+      <a href="#about">About</a>
+      <a href="#organizer">Organizer</a>
+      <a href="#themes">Themes</a>
+      <a href="#impact">Impact</a>
+      <a href="#org-committee">Org. Committee</a>
+      <a href="#sci-committee">Sci. Committee</a>
+      <a href="#guidelines">Guidelines</a>
+      <a href="#submission">Submission</a>
+      <a href="#fees">Fees</a>
+      <a href="#venue">Venue</a>
+      <a href="#indexation">Indexation</a>
+      <a href="#dates">Dates</a>
+      <a href="#format">Format</a>
+      <a href="#chairs">Chairs</a>
+      <a href="#speakers">Speakers</a>
+      <a href="#sponsors">Sponsors</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-shapes"><span></span><span></span><span></span></div>
+  <div class="hero-content">
+    <div class="hero-badge">🌍 1st Edition • ICNHTR 2026</div>
+    <p class="hero-organizer">The Faculty of Sciences and Techniques of Errachidia,<br/>and Geosciences and Technologies Research Team, Organize the</p>
+    <h1>1<sup style="font-size:0.5em;vertical-align:super;">st</sup> International Congress on<br/>Natural Hazards and <span>Territorial Resilience</span></h1>
+    <div class="hero-acronym">(ICNHTR 2026)</div>
+    <div class="hero-theme">
+      <p>Under the theme</p>
+      <p>🎯 From Data to Decision: Smart Risk Management in a Changing Climate</p>
+    </div>
+    <div class="hero-date">
+      📅 <span>November 27–29, 2026</span> &nbsp;|&nbsp; 📍 <span>Errachidia, Morocco</span>
+    </div>
+   <!-- <div class="hero-stats">
+      <div class="stat-item">
+        <div class="stat-num" data-target="300">0</div>
+        <div class="stat-label">Expected Participants</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num" data-target="40">0</div>
+        <div class="stat-label">Countries</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num" data-target="6">0</div>
+        <div class="stat-label">Scientific Sections</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num" data-target="3">0</div>
+        <div class="stat-label">Days of Congress</div>
+      </div>
+    </div> -->
+    <div class="hero-btns">
+      <a href="#submission" class="btn-primary">📄 Submit a Paper</a>
+      <a href="#dates" class="btn-secondary">📅 Important Dates</a>
+      <a href="#contact" class="btn-secondary">📬 Contact Us</a>
+    </div>
+  </div>
+</div>
+
+<!-- CAROUSEL -->
+<div class="carousel-section">
+  <div class="carousel-track">
+    <div class="carousel-inner">
+      <div class="carousel-card">
+        <img src="https://images.unsplash.com/photo-1469474968028-56623f02e42e?q=80&w=800&auto=format&fit=crop" alt="Natural Landscape"/>
+        <div class="carousel-overlay">🏔️ Natural Hazards</div>
+      </div>
+      <div class="carousel-card">
+        <img src="https://images.unsplash.com/photo-1547683905-f686c993aae5?q=80&w=800&auto=format&fit=crop" alt="Flood Risk"/>
+        <div class="carousel-overlay">🌊 Hydro-Climatic Hazards</div>
+      </div>
+      <div class="carousel-card">
+        <img src="https://images.unsplash.com/photo-1504711434969-e33886168f5c?q=80&w=800&auto=format&fit=crop" alt="Research"/>
+        <div class="carousel-overlay">🔬 Data Science & GIS</div>
+      </div>
+      <div class="carousel-card">
+        <img src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?q=80&w=800&auto=format&fit=crop" alt="Conference"/>
+        <div class="carousel-overlay">🎤 International Congress</div>
+      </div>
+      <div class="carousel-card">
+        <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=800&auto=format&fit=crop" alt="Errachidia"/>
+        <div class="carousel-overlay">📍 Errachidia, Morocco</div>
+      </div>
+      <div class="carousel-card">
+        <img src="https://images.unsplash.com/photo-1482192596544-9eb780fc7f66?q=80&w=800&auto=format&fit=crop" alt="Speakers"/>
+        <div class="carousel-overlay">🌐 Global Experts</div>
+      </div>
+      <div class="carousel-card">
+        <img src="https://images.unsplash.com/photo-1446776877081-d282a0f896e2?q=80&w=800&auto=format&fit=crop" alt="Earth Science"/>
+        <div class="carousel-overlay">🌍 Geosciences & Technologies</div>
+      </div>
+      <div class="carousel-card">
+        <img src="https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?q=80&w=800&auto=format&fit=crop" alt="Workshop"/>
+        <div class="carousel-overlay">🤝 Workshops & Networking</div>
+      </div>
+      <!-- Duplicates for seamless loop -->
+      <div class="carousel-card">
+        <img src="https://images.unsplash.com/photo-1469474968028-56623f02e42e?q=80&w=800&auto=format&fit=crop" alt="Natural Landscape"/>
+        <div class="carousel-overlay">🏔️ Natural Hazards</div>
+      </div>
+      <div class="carousel-card">
+        <img src="https://images.unsplash.com/photo-1547683905-f686c993aae5?q=80&w=800&auto=format&fit=crop" alt="Flood Risk"/>
+        <div class="carousel-overlay">🌊 Hydro-Climatic Hazards</div>
+      </div>
+      <div class="carousel-card">
+        <img src="https://images.unsplash.com/photo-1504711434969-e33886168f5c?q=80&w=800&auto=format&fit=crop" alt="Research"/>
+        <div class="carousel-overlay">🔬 Data Science & GIS</div>
+      </div>
+      <div class="carousel-card">
+        <img src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?q=80&w=800&auto=format&fit=crop" alt="Conference"/>
+        <div class="carousel-overlay">🎤 International Congress</div>
+      </div>
+      <div class="carousel-card">
+        <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=800&auto=format&fit=crop" alt="Errachidia"/>
+        <div class="carousel-overlay">📍 Errachidia, Morocco</div>
+      </div>
+      <div class="carousel-card">
+        <img src="https://images.unsplash.com/photo-1482192596544-9eb780fc7f66?q=80&w=800&auto=format&fit=crop" alt="Speakers"/>
+        <div class="carousel-overlay">🌐 Global Experts</div>
+      </div>
+      <div class="carousel-card">
+        <img src="https://images.unsplash.com/photo-1446776877081-d282a0f896e2?q=80&w=800&auto=format&fit=crop" alt="Earth Science"/>
+        <div class="carousel-overlay">🌍 Geosciences & Technologies</div>
+      </div>
+      <div class="carousel-card">
+        <img src="https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?q=80&w=800&auto=format&fit=crop" alt="Workshop"/>
+        <div class="carousel-overlay">🤝 Workshops & Networking</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- MAIN CONTENT -->
+<main>
+
+  <!-- ABOUT -->
+  <section class="section" id="about">
+   <!-- <span class="section-icon">🌿</span>-->
+    <h2>About the Conference</h2>
+    <p>The <strong>1st International Congress on Natural Hazards and Territorial Resilience (ICNHTR 2026)</strong> is a premier scientific event organized by the <strong>Faculty of Sciences and Techniques of Errachidia (FST-UMI)</strong> and the <strong>Geosciences and Technologies Research Team</strong>. It brings together researchers, scientists, engineers, decision-makers, and practitioners from around the world to exchange knowledge, present cutting-edge research, and foster international collaboration in the field of natural hazard assessment, risk management, and territorial resilience.</p>
+<!--     <div class="info-box" style="margin-top:20px;">
+      <p>🎯 <strong>Theme:</strong> "From Data to Decision: Smart Risk Management in a Changing Climate"<br/>
+      This congress addresses the urgent need for innovative, data-driven approaches to understand, predict, and mitigate natural hazards in a rapidly changing climate context.</p>
+    </div>-->
+  </section>
+
+  <!-- ORGANIZER -->
+  <section class="section" id="organizer">
+   <!-- <span class="section-icon">🏛️</span>-->
+    <h2>Organizer</h2>
+    <p>The congress is organized by the <strong>Faculty of Sciences and Techniques of Errachidia (FST)</strong>, a component of <strong>Moulay Ismail University (UMI)</strong>, in partnership with the <strong>Geosciences and Technologies Research Team</strong> and supported by <strong>CNRST</strong> and the <strong>AAFRS</strong> Association.</p>
+    <div class="org-logos">
+      <div class="org-logo-item">🎓 Université Moulay Ismail (UMI)</div>
+      <div class="org-logo-item">🔬 FST Errachidia</div>
+      <div class="org-logo-item">🌍 Geosciences & Technologies Research Team</div>
+     <!-- <div class="org-logo-item">🏢 CNRST</div>
+      <div class="org-logo-item">🤝 AAFRS</div>-->
+    </div>
+  </section>
+
+  <!-- THEMES -->
+  <section class="section" id="themes">
+   <!-- <span class="section-icon">🔬</span>-->
+    <h2>Conference Themes</h2>
+    <div class="grid-3">
+      <div class="theme-card">
+        <span class="theme-icon">🌧️</span>
+        <h3>Hydro-Climatic Hazards & Early Warning Systems</h3>
+        <p>Floods, droughts, climate extremes and early warning technologies</p>
+      </div>
+      <div class="theme-card">
+       <!--  <span class="theme-icon">🪨</span>-->
+        <h3>Geohazards and Land Degradation</h3>
+        <p>Landslides, earthquakes, erosion and land degradation processes</p>
+      </div>
+      <div class="theme-card">
+       <!--  <span class="theme-icon">🛰️</span>-->
+
+        <h3>Data Science, AI & Geospatial Technologies</h3>
+        <p>Remote sensing, GIS, machine learning and spatial analysis</p>
+      </div>
+      <div class="theme-card">
+     <!--    <span class="theme-icon">☣️</span>-->
+
+        <h3>Environmental Pollution and Systemic Risks</h3>
+        <p>Pollution assessment, industrial risks and environmental impacts</p>
+      </div>
+      <div class="theme-card">
+     <!--    <span class="theme-icon">💧</span>-->
+        <h3>Water Resources Security & Sustainability</h3>
+        <p>Water scarcity, groundwater management and resource sustainability</p>
+      </div>
+      <div class="theme-card">
+       <!--  <span class="theme-icon">🌱</span>-->
+        <h3>Territorial Resilience & Climate Adaptation</h3>
+        <p>Resilience planning, adaptation strategies and territorial governance</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- SCIENTIFIC IMPACT -->
+  <section class="section" id="impact">
+  <!--   <span class="section-icon">📊</span>-->
+    <h2>Scientific Impact</h2>
+    <p>ICNHTR 2026 aims to become a reference congress in the MENA region and globally for natural hazards research and territorial resilience. The congress will accelerate knowledge transfer, encourage high-quality publications, and strengthen international research networks.</p>
+    <div class="impact-grid">
+      <div class="impact-card">
+        <div class="impact-num">SCOPUS</div>
+        <div class="impact-label">Indexed Publications</div>
+      </div>
+      <div class="impact-card">
+        <div class="impact-num">WoS</div>
+        <div class="impact-label">Web of Science</div>
+      </div>
+      <div class="impact-card">
+        <div class="impact-num">Springer</div>
+        <div class="impact-label">Book Publication</div>
+      </div>
+<!--      <div class="impact-card">
+        <div class="impact-num">300+</div>
+        <div class="impact-label">Expected Papers</div>
+      </div>-->
+    </div>
+    <div class="info-box">
+      <p>📖 Accepted papers from <strong>ICNHTR 2026</strong> will be published in a <strong>SCOPUS and WOS indexed Book</strong> (Springer proceedings).</p>
+    </div>
+  </section>
+
+  <!-- ORG COMMITTEE -->
+  <section class="section" id="org-committee">
+   <!-- <span class="section-icon">👥</span>-->
+
+    <h2>Organization Committee</h2>
+    <div class="grid-2">
+      <div class="committee-item">
+        <div class="c-avatar">MA</div>
+        <div><div class="c-name">Pr. Mourad Aqnouy</div><div class="c-role"> FST-UMI, Errachidia</div></div>
+      </div>
+      <div class="committee-item">
+        <div class="c-avatar">KO</div>
+        <div><div class="c-name">Pr. </div><div class="c-role">FST-UMI, Errachidia</div></div>
+      </div>
+      <div class="committee-item">
+        <div class="c-avatar">HA</div>
+        <div><div class="c-name">Pr. </div><div class="c-role">FST-UMI, Errachidia</div></div>
+      </div>
+      <div class="committee-item">
+        <div class="c-avatar">SB</div>
+        <div><div class="c-name">Pr. </div><div class="c-role">FST-UMI, Errachidia</div></div>
+      </div>
+      <div class="committee-item">
+        <div class="c-avatar">NE</div>
+        <div><div class="c-name">Pr. </div><div class="c-role">FST-UMI, Errachidia</div></div>
+      </div>
+      <div class="committee-item">
+        <div class="c-avatar">AB</div>
+        <div><div class="c-name">Pr. </div><div class="c-role">FST-UMI, Errachidia</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SCI COMMITTEE -->
+  <section class="section" id="sci-committee">
+   <!--  <span class="section-icon">🎓</span>-->
+    <h2>Scientific Committee</h2>
+    <div class="grid-2">
+      <div class="committee-item">
+        <div class="c-avatar">MA</div>
+        <div><div class="c-name">Prof. Mourad Aqnouy</div><div class="c-role">FST-UMI, Morocco (Chair)</div></div>
+      </div>
+      <div class="committee-item">
+        <div class="c-avatar">MH</div>
+        <div><div class="c-name">Pr. </div><div class="c-role">............., Morocco</div></div>
+      </div>
+      <div class="committee-item">
+        <div class="c-avatar">FB</div>
+        <div><div class="c-name">Pr. </div><div class="c-role">..............</div></div>
+      </div>
+      <div class="committee-item">
+        <div class="c-avatar">JA</div>
+        <div><div class="c-name">Pr. </div><div class="c-role">..............</div></div>
+      </div>
+      <div class="committee-item">
+        <div class="c-avatar">LB</div>
+        <div><div class="c-name">Pr. </div><div class="c-role">..............</div></div>
+      </div>
+      <div class="committee-item">
+        <div class="c-avatar">AR</div>
+        <div><div class="c-name">Pr. </div><div class="c-role">..............</div></div>
+      </div>
+      <div class="committee-item">
+        <div class="c-avatar">KA</div>
+        <div><div class="c-name">Pr. </div><div class="c-role">..............</div></div>
+      </div>
+      <div class="committee-item">
+        <div class="c-avatar">IE</div>
+        <div><div class="c-name">Pr. </div><div class="c-role">..............</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- GUIDELINES -->
+  <section class="section" id="guidelines">
+   <!-- <span class="section-icon">📝</span>-->
+    <h2>Authors Guidelines</h2>
+    <div class="guideline-step">
+      <div class="step-num">1</div>
+      <div class="step-text"><h4>Language</h4><p>Contributions must be written in <strong>English</strong>. Abstracts may also be submitted in French.</p></div>
+    </div>
+    <div class="guideline-step">
+      <div class="step-num">2</div>
+      <div class="step-text"><h4>Originality</h4><p>All submitted papers must be original, unpublished, and not under review elsewhere.</p></div>
+    </div>
+    <div class="guideline-step">
+      <div class="step-num">3</div>
+      <div class="step-text"><h4>Abstract Submission</h4><p>Abstract (max. 300 words) must include: title, authors, affiliations, keywords, and main findings. Deadline: <strong>June 30, 2026</strong>.</p></div>
+    </div>
+    <div class="guideline-step">
+      <div class="step-num">4</div>
+      <div class="step-text"><h4>Full Paper Format</h4><p>Papers must follow the <strong>Springer proceedings template</strong>. Max. 12 pages including references, figures, and tables.</p></div>
+    </div>
+    <div class="guideline-step">
+      <div class="step-num">5</div>
+      <div class="step-text"><h4>Peer Review</h4><p>All papers will undergo a rigorous <strong>double-blind peer review</strong> process by the international scientific committee.</p></div>
+    </div>
+    <div class="guideline-step">
+      <div class="step-num">6</div>
+      <div class="step-text"><h4>Publication</h4><p>Accepted papers will be published in a <strong>SCOPUS and WOS indexed Book</strong> (Springer). Authors retain copyright under Springer terms.</p></div>
+    </div>
+  </section>
+
+  <!-- SUBMISSION -->
+  <section class="section" id="submission">
+  <!--  <span class="section-icon">📤</span> -->
+    <h2>Full Paper Submission</h2>
+    <p>Authors are invited to submit their full papers through the official online submission platform. All submissions will be assigned to reviewers from the international scientific committee. Authors will receive detailed feedback and revision instructions if needed.</p>
+    <div class="info-box">
+      <p>📧 Submit your paper via email or the online platform:<br/>
+      <strong>m.aqnouy@umi.ac.ma</strong> &nbsp;|&nbsp; <strong>icnhtr26@gmail.com</strong><br/><br/>
+      🌐 Website: <strong>www.icnhtr2026.com</strong>
+      </p>
+    </div>
+    <a class="cta" href="mailto:icnhtr26@gmail.com">📄 Submit a Paper</a>
+  </section>
+
+  <!-- FEES -->
+  <section class="section" id="fees">
+  <!--   <span class="section-icon">💳</span>-->
+    <h2>Registration Fee</h2>
+   <!-- <div class="fee-cards">
+      <div class="fee-card">
+        <div class="fee-icon">🎓</div>
+        <div class="fee-type">Early Bird Registration</div>
+        <div class="fee-row"><span>PhD Students</span><span class="fee-amount">150 €</span></div>
+        <div class="fee-row"><span>Academics</span><span class="fee-amount">250 €</span></div>
+        <div class="fee-row"><span>Industry / Professionals</span><span class="fee-amount">350 €</span></div>
+        <div class="fee-row"><span>Deadline</span><span class="fee-amount">Sept 15, 2026</span></div>
+      </div>
+      <div class="fee-card featured">
+        <div class="fee-ribbon">⭐ POPULAR</div>
+        <div class="fee-icon">🏆</div>
+        <div class="fee-type">Standard Registration</div>
+        <div class="fee-row"><span>PhD Students</span><span class="fee-amount">200 €</span></div>
+        <div class="fee-row"><span>Academics</span><span class="fee-amount">300 €</span></div>
+        <div class="fee-row"><span>Industry / Professionals</span><span class="fee-amount">420 €</span></div>
+        <div class="fee-row"><span>After</span><span class="fee-amount">Sept 15, 2026</span></div>
+      </div>
+      <div class="fee-card">
+        <div class="fee-icon">🌍</div>
+        <div class="fee-type">Accompanying Person</div>
+        <div class="fee-row"><span>Registration</span><span class="fee-amount">100 €</span></div>
+        <div class="fee-row"><span>Social Events</span><span class="fee-amount">Included</span></div>
+        <div class="fee-row"><span>Gala Dinner</span><span class="fee-amount">Included</span></div>
+        <div class="fee-row"><span>Certificate</span><span class="fee-amount">✓</span></div>
+      </div>
+    </div>
+    <div class="info-box">-->
+      <p>💡 Registration includes: Congress kit, coffee breaks, lunches, welcome reception, certificate of participation, and access to all sessions. <strong>Early registration is strongly recommended.</strong></p>
+    </div>
+  </section>
+
+  <!-- VENUE -->
+  <section class="section" id="venue">
+  <!--   <span class="section-icon">📍</span> -->
+    <h2>Event Venue</h2>
+    <div class="grid-2">
+      <div>
+        <h3 style="color:var(--primary-dark);margin-bottom:12px;">🏛️ Faculty of Sciences and Techniques</h3>
+        <p><strong>FST Errachidia — Moulay Ismail University</strong><br/>Errachidia, Morocco<br/><br/>
+        Errachidia is located in the southeastern part of Morocco, in the heart of the Ziz Valley — a region known for its natural landscapes, palm groves, and proximity to the Sahara Desert.</p>
+        <div class="info-box" style="margin-top:16px;">
+          <p>✈️ <strong>Air Access:</strong> Moulay Ali Cherif Airport (ERH), Errachidia<br/>
+         <!-- 🚌 <strong>Road Access:</strong> Accessible from Fez (4h), Meknes (4.5h), Casablanca (8h)<br/>-->
+          🏨 <strong>Accommodation:</strong> Several hotels available near the university</p>
+        </div>
+      </div>
+      <div style="border-radius:16px;overflow:hidden;min-height:220px;background:linear-gradient(135deg,#e8f5e9,#f4f9f6);display:flex;align-items:center;justify-content:center;flex-direction:column;gap:12px;padding:24px;border:2px solid rgba(76,175,80,0.15);">
+        <div style="font-size:3rem;">🏔️</div>
+        <p style="text-align:center;color:var(--muted);font-size:0.9rem;"><strong style="color:var(--primary-dark);">Errachidia, Morocco</strong><br/>Gateway to the Sahara<br/>Ziz Valley — Southeastern Morocco<br/><br/>
+        <em>A unique congress destination combining scientific excellence and natural beauty</em></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- INDEXATION -->
+  <section class="section" id="indexation">
+   <!--  <span class="section-icon">📚</span> -->
+    <h2>Indexation & Publication</h2>
+    <p>Accepted papers from <strong>ICNHTR 2026</strong> will be published in an internationally recognized, peer-reviewed proceedings book indexed in major scientific databases:</p>
+    <div class="index-grid">
+      <div class="index-badge"><span>🔵</span> Scopus</div>
+      <div class="index-badge"><span>🔷</span> Web of Science (WoS)</div>
+      <div class="index-badge"><span>📗</span> Springer Book</div>
+      <div class="index-badge"><span>🔍</span> Google Scholar</div>
+    </div>
+    <div class="info-box">
+      <p>📖 All accepted and presented papers will be published in a <strong>Springer-indexed proceedings book</strong> under SCOPUS and WOS indexation, ensuring maximum international visibility for your research.</p>
+    </div>
+  </section>
+
+  <!-- DATES -->
+  <section class="section" id="dates">
+    <span class="section-icon">📅</span>
+    <h2>Important Dates</h2>
+    <div class="timeline">
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-date">June 30, 2026</div>
+        <div class="timeline-label">Abstract Submission Deadline</div>
+        <span class="status-badge status-open">🟢 Open</span>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-date">August 15, 2026</div>
+        <div class="timeline-label">Notification of Acceptance</div>
+        <span class="status-badge status-upcoming">🟡 Upcoming</span>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-date">September 10, 2026</div>
+        <div class="timeline-label">Full Paper Submission Deadline</div>
+        <span class="status-badge status-upcoming">🟡 Upcoming</span>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-date">September 15, 2026</div>
+        <div class="timeline-label">Early Registration Deadline</div>
+        <span class="status-badge status-upcoming">🟡 Upcoming</span>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-date">October 15, 2026</div>
+        <div class="timeline-label">Notification of Final Acceptance</div>
+        <span class="status-badge status-upcoming">🟡 Upcoming</span>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-date">November 27–29, 2026</div>
+        <div class="timeline-label">🎉 Congress Days — Errachidia, Morocco</div>
+        <span class="status-badge status-upcoming">🎯 Main Event</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- FORMAT -->
+  <section class="section" id="format">
+   <!--  <span class="section-icon">🗓️</span> -->
+    <h2>Format of the Event</h2>
+    <p>ICNHTR 2026 is organized as a <strong>3-day in-person congress</strong> (with hybrid options available) structured around:</p>
+    <div style="margin-top:16px;">
+      <div class="format-item">
+        <div class="format-icon-box">🎤</div>
+        <div><div class="format-text">Keynote & Plenary Sessions</div><div class="format-sub">Invited talks by world-renowned experts in natural hazards and resilience</div></div>
+      </div>
+      <div class="format-item">
+        <div class="format-icon-box">💬</div>
+        <div><div class="format-text">Oral Presentation Sessions</div><div class="format-sub">Thematic parallel sessions covering the 6 main scientific sections</div></div>
+      </div>
+      <div class="format-item">
+        <div class="format-icon-box">📋</div>
+        <div><div class="format-text">Poster Sessions</div><div class="format-sub">Interactive poster exhibition with dedicated Q&A time for authors</div></div>
+      </div>
+      <div class="format-item">
+        <div class="format-icon-box">🔧</div>
+        <div><div class="format-text">Technical Workshops</div><div class="format-sub">Hands-on training sessions on GIS, remote sensing and data analysis tools</div></div>
+      </div>
+      <div class="format-item">
+        <div class="format-icon-box">🤝</div>
+        <div><div class="format-text">B2B & Networking Sessions</div><div class="format-sub">Dedicated meetings for researchers, institutions and industry partners</div></div>
+      </div>
+<!--      <div class="format-item">
+        <div class="format-icon-box">🏕️</div>
+        <div><div class="format-text">Field Trip</div><div class="format-sub">Scientific excursion in the Ziz Valley and surrounding natural hazard sites</div></div>
+      </div>
+    </div> -->
+  </section>
+
+  <!-- CHAIRS -->
+  <section class="section" id="chairs">
+<!--    <span class="section-icon">🏅</span>  -->
+
+    <h2>Conference Chairs</h2>
+    <div class="profiles-grid">
+      <div class="profile-card">
+        <div class="profile-photo-wrap">
+          <div class="profile-ring"></div>
+          <div class="profile-photo">
+  <img src="./PrMourad.png" alt="Photo de MK" />
+</div>
+         </div>
+        <div class="profile-name">Pr. Mourad Aqnouy</div>
+        <div class="profile-title">Congress Chair</div>
+        <div class="profile-affil">FST-UMI, Errachidia, Morocco</div>
+       <!-- <div class="profile-badge">🏆 Chair</div>-->
+
+      </div>
+    <!--  <div class="profile-card">
+        <div class="profile-photo-wrap">
+          <div class="profile-ring"></div>
+          <div class="profile-photo">LB</div>
+        </div>
+        <div class="profile-name">Prof. Lhoussaine Bouchaou</div>
+        <div class="profile-title">Scientific Co-Chair</div>
+        <div class="profile-affil">Ibn Zohr University, Agadir</div>
+        <div class="profile-badge">🎓 Co-Chair</div>
+      </div>
+      <div class="profile-card">
+        <div class="profile-photo-wrap">
+          <div class="profile-ring"></div>
+          <div class="profile-photo">AR</div>
+        </div>
+        <div class="profile-name">Prof. Abdelkrim Rimi</div>
+        <div class="profile-title">Honorary Chair</div>
+        <div class="profile-affil">CNRST, Morocco</div>
+        <div class="profile-badge">⭐ Honorary</div>
+      </div>-->
+    </div>
+  </section>
+
+  <!-- SPEAKERS -->
+  <section class="section" id="speakers">
+   <!-- <span class="section-icon">🎙️</span> -->
+
+    <h2>Our Keynote Speakers</h2>
+    <div class="profiles-grid">
+      <div class="profile-card">
+        <div class="profile-photo-wrap">
+          <div class="profile-ring"></div>
+          <div class="profile-photo">JL</div>
+        </div>
+        <div class="profile-name">Prof. .........</div>
+        <div class="profile-title">................</div>
+        <div class="profile-affil">....., .......</div>
+        <div class="profile-badge">🌊 Keynote</div>
+      </div>
+      <div class="profile-card">
+        <div class="profile-photo-wrap">
+          <div class="profile-ring"></div>
+          <div class="profile-photo">MS</div>
+        </div>
+        <div class="profile-name">Prof. ..........</div>
+        <div class="profile-title">...........</div>
+        <div class="profile-affil">.............</div>
+        <div class="profile-badge">🛰️ Keynote</div>
+      </div>
+      <div class="profile-card">
+        <div class="profile-photo-wrap">
+          <div class="profile-ring"></div>
+          <div class="profile-photo">HA</div>
+        </div>
+        <div class="profile-name">Prof. ...............</div>
+        <div class="profile-title">...................</div>
+        <div class="profile-affil">................</div>
+        <div class="profile-badge">🪨 Keynote</div>
+      </div>
+      <div class="profile-card">
+        <div class="profile-photo-wrap">
+          <div class="profile-ring"></div>
+          <div class="profile-photo">FR</div>
+        </div>
+        <div class="profile-name">Prof. ...........</div>
+        <div class="profile-title">................</div>
+        <div class="profile-affil">................</div>
+        <div class="profile-badge">🔬 Keynote</div>
+      </div>
+      <div class="profile-card">
+        <div class="profile-photo-wrap">
+          <div class="profile-ring"></div>
+          <div class="profile-photo">AK</div>
+        </div>
+        <div class="profile-name">Prof. ................</div>
+        <div class="profile-title">.................</div>
+        <div class="profile-affil">...................</div>
+        <div class="profile-badge">🌱 Keynote</div>
+      </div>
+      <div class="profile-card">
+        <div class="profile-photo-wrap">
+          <div class="profile-ring"></div>
+          <div class="profile-photo">SE</div>
+        </div>
+        <div class="profile-name">Dr. .................</div>
+        <div class="profile-title">...................</div>
+        <div class="profile-affil">...............</div>
+        <div class="profile-badge">🤖 Keynote</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SPONSORS -->
+  <section class="section" id="sponsors">
+  <!--  <span class="section-icon">🤝</span> -->
+
+    <h2>Our Sponsors & Partners</h2>
+    <div class="sponsor-tier tier-platinum">
+    <!--  <div class="tier-label">🏆 Institutional Partners</div>-->
+      <div class="sponsor-logos">
+        <div class="sponsor-logo">🎓 Moulay Ismail University (UMI)</div>
+        <div class="sponsor-logo">🔬 FST Errachidia</div>
+        <div class="sponsor-logo">🏢 CNRST Morocco</div>
+      </div>
+    </div>
+    <!--<div class="sponsor-tier tier-gold">
+      <div class="tier-label">🥇 Gold Sponsors</div>
+      <div class="sponsor-logos">
+        <div class="sponsor-logo">🤝 AAFRS Association</div>
+        <div class="sponsor-logo">📚 Springer Nature</div>
+      </div>
+    </div> 
+    <div class="sponsor-tier tier-silver">
+      <div class="tier-label">🥈 Silver Sponsors</div>
+      <div class="sponsor-logos">
+        <div class="sponsor-logo">💧 Agence du Bassin Hydraulique</div>
+        <div class="sponsor-logo">🌍 Direction Régionale de l'Environnement</div>
+      </div>
+    </div>
+    <div class="sponsor-tier tier-media">
+      <div class="tier-label">📡 Media Partners</div>
+      <div class="sponsor-logos">
+        <div class="sponsor-logo">📺 Medi1TV</div>
+        <div class="sponsor-logo">📰 Le Matin.ma</div>
+      </div>
+    </div>
+    <div class="info-box">
+      <p>📧 Interested in sponsoring ICNHTR 2026? Contact us at <strong>icnhtr26@gmail.com</strong> for sponsorship packages and opportunities.</p>
+    </div> -->
+  </section>
+
+  <!-- CONTACT -->
+  <section class="section" id="contact">
+  <!--  <span class="section-icon">📬</span>-->
+    <h2>Contact</h2>
+    <div class="contact-grid">
+      <div class="contact-card">
+        <h3>📋 Congress Organizer</h3>
+        <div class="contact-row">
+          <span class="contact-icon">👤</span>
+          <div class="contact-text"><strong>Pr. Mourad Aqnouy</strong><br/>FST-UMI, Errachidia, Morocco</div>
+        </div>
+        <div class="contact-row">
+          <span class="contact-icon">📧</span>
+          <div class="contact-text">
+            <a href="mailto:m.aqnouy@umi.ac.ma">m.aqnouy@umi.ac.ma</a><br/>
+            <a href="mailto:icnhtr26@gmail.com">icnhtr26@gmail.com</a>
+          </div>
+        </div>
+        <div class="contact-row">
+          <span class="contact-icon">📞</span>
+          <div class="contact-text">+212 673 675 428</div>
+        </div>
+        <div class="contact-row">
+          <span class="contact-icon">🌐</span>
+          <div class="contact-text"><a href="http://www.icnhtr2026.com" target="_blank">www.icnhtr2026.com</a></div>
+        </div>
+      </div>
+      <div class="contact-card">
+        <h3>📍 Congress Venue</h3>
+        <div class="contact-row">
+          <span class="contact-icon">🏛️</span>
+          <div class="contact-text"><strong>Faculty of Sciences and Techniques</strong><br/>Moulay Ismail University<br/>Errachidia, Morocco</div>
+        </div>
+        <div class="contact-row">
+          <span class="contact-icon">🗓️</span>
+          <div class="contact-text"><strong>November 27–29, 2026</strong></div>
+        </div>
+        <div class="contact-row">
+         <!-- <span class="contact-icon">✈️</span>-->
+         <!-- <div class="contact-text">Moulay Ali Cherif Airport (ERH)<br/>Errachidia, Morocco</div>-->
+        </div>
+        <a class="cta" href="mailto:icnhtr26@gmail.com">✉️ Send a Message</a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-content">
+    <div class="footer-logo">ICNHTR 2026</div>
+    <p class="footer-tagline">1st International Congress on Natural Hazards and Territorial Resilience<br/>November 27–29, 2026 • Errachidia, Morocco</p>
+<!--     <div class="footer-socials">
+      <a class="social-btn" href="http://www.icnhtr2026.com" title="Website">🌐</a>
+      <a class="social-btn" href="mailto:icnhtr26@gmail.com" title="Email">📧</a>
+      <a class="social-btn" href="#" title="Twitter/X">🐦</a>
+      <a class="social-btn" href="#" title="LinkedIn">💼</a>
+      <a class="social-btn" href="#" title="ResearchGate">🔬</a>
+    </div>-->
+
+    <p class="footer-copy">© 2026 ICNHTR — All rights reserved.<!--<br/>Made with ❤️ for Science--></p>
+  </div>
+</footer>
+
+<!-- FAB -->
+<a class="fab" href="#contact" title="Contact Us">📬</a>
+
+<script>
+  // Scroll Progress
+  window.addEventListener('scroll', () => {
+    const scroll = window.scrollY;
+    const total = document.body.scrollHeight - window.innerHeight;
+    document.getElementById('scroll-progress').style.width = (scroll / total * 100) + '%';
+  });
+
+  // Particles
+  const container = document.getElementById('particles');
+  for (let i = 0; i < 25; i++) {
+    const p = document.createElement('div');
+    p.classList.add('particle');
+    const size = Math.random() * 80 + 20;
+    p.style.cssText = `
+      width:${size}px; height:${size}px;
+      left:${Math.random()*100}%;
+      animation-duration:${Math.random()*20+15}s;
+      animation-delay:${Math.random()*15}s;
+      opacity:${Math.random()*0.05+0.02};
+    `;
+    container.appendChild(p);
+  }
+
+  // Intersection Observer
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        observer.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.section').forEach(s => observer.observe(s));
+
+  // Counter animation
+  const counters = document.querySelectorAll('[data-target]');
+  const counterObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const el = entry.target;
+        const target = parseInt(el.getAttribute('data-target'));
+        const suffix = el.textContent.includes('+') ? '+' : '';
+        let count = 0;
+        const step = Math.ceil(target / 60);
+        const timer = setInterval(() => {
+          count = Math.min(count + step, target);
+          el.textContent = count + (target >= 10 ? '+' : '');
+          if (count >= target) clearInterval(timer);
+        }, 30);
+        counterObserver.unobserve(el);
+      }
+    });
+  }, { threshold: 0.5 });
+  counters.forEach(c => counterObserver.observe(c));
+
+  // Smooth scroll
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', e => {
+      e.preventDefault();
+      const target = document.querySelector(a.getAttribute('href'));
+      if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+  });
+</script>
+</body>
+</html>
