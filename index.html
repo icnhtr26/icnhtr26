@@ -871,7 +871,113 @@
     </div>
   </div>
 </div>
+<!--coundown conference strat-->
+ <div class="countdown-container">
+  <h2>🌍 Conference Starts In</h2>
 
+  <div class="event-date">November 27–29, 2026</div>
+
+  <div class="countdown" id="countdown">
+    <div class="time-box">
+      <span id="days">00</span>
+      <p>Days</p>
+    </div>
+    <div class="time-box">
+      <span id="hours">00</span>
+      <p>Hours</p>
+    </div>
+    <div class="time-box">
+      <span id="minutes">00</span>
+      <p>Minutes</p>
+    </div>
+    <div class="time-box">
+      <span id="seconds">00</span>
+      <p>Seconds</p>
+    </div>
+  </div>
+</div>
+
+<style>
+.countdown-container {
+  text-align: center;
+  padding: 70px 20px;
+  background: linear-gradient(135deg, #065f46, #10b981);
+  color: white;
+  border-radius: 25px;
+}
+
+.countdown-container h2 {
+  font-size: 2.2rem;
+  margin-bottom: 10px;
+}
+
+.event-date {
+  font-size: 1.2rem;
+  margin-bottom: 30px;
+  color: #d1fae5;
+}
+
+.countdown {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.time-box {
+  background: white;
+  color: #065f46;
+  padding: 20px;
+  border-radius: 15px;
+  min-width: 90px;
+  
+  /* 🔴 shadow rouge */
+  box-shadow: 0 10px 25px rgba(239, 68, 68, 0.4);
+
+  transition: 0.3s;
+}
+
+.time-box span {
+  font-size: 2.2rem;
+  font-weight: bold;
+  color: #ef4444;
+}
+
+.time-box p {
+  margin-top: 5px;
+  font-size: 0.9rem;
+}
+
+.time-box:hover {
+  transform: scale(1.1);
+  box-shadow: 0 15px 35px rgba(239, 68, 68, 0.6);
+}
+</style>
+
+<script>
+// Date de début du congrès (27 Novembre 2026)
+const eventDate = new Date("November 27, 2026 09:00:00").getTime();
+
+const countdown = setInterval(() => {
+  const now = new Date().getTime();
+  const distance = eventDate - now;
+
+  const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+  const hours = Math.floor((distance / (1000 * 60 * 60)) % 24);
+  const minutes = Math.floor((distance / (1000 * 60)) % 60);
+  const seconds = Math.floor((distance / 1000) % 60);
+
+  document.getElementById("days").innerHTML = days;
+  document.getElementById("hours").innerHTML = hours;
+  document.getElementById("minutes").innerHTML = minutes;
+  document.getElementById("seconds").innerHTML = seconds;
+
+  if (distance < 0) {
+    clearInterval(countdown);
+    document.getElementById("countdown").innerHTML = "🎉 The Conference Has Started!";
+  }
+}, 1000);
+</script>
 <!-- CAROUSEL -->
 <div class="carousel-section">
   <div class="carousel-track">
