@@ -770,6 +770,30 @@
             border: 0;
         }
         /*/////////*/
+    /*----deadline-----*/
+    .deadline {
+  display: inline-block;
+  padding: 12px 25px;
+  font-size: 1.2rem;
+  font-weight: 500;
+  color: #065f46;
+  background: #ecfdf5;
+  border-radius: 50px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+  transition: 0.3s ease;
+}
+
+.deadline span {
+  font-weight: bold;
+  color: #10b981;
+  margin-left: 5px;
+}
+
+.deadline:hover {
+  transform: scale(1.05);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+}
+    /*------------------*/
   </style>
 </head>
 <body>
@@ -1472,8 +1496,10 @@
 
         </div>
     <br>
-    <p class="remark"> Deadline: <u>September 30, 2026.</u>.</p>
-    <br>
+<div class="deadline">
+  ⏳ Deadline: <span>September 30, 2026</span>
+</div>
+        <br>
       <p>💡 Registration includes: Congress kit, coffee breaks, lunches, welcome reception, certificate of participation, access to all sessions and Publication in a book indexed by Scopus and Web of Science. <strong>Early registration is strongly recommended.</strong></p>
   </section>
 
