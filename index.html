@@ -771,7 +771,7 @@
         }
         /*/////////*/
     /*----deadline-----*/
-    .deadline {
+.deadline {
   display: inline-block;
   padding: 12px 25px;
   font-size: 1.2rem;
@@ -779,19 +779,22 @@
   color: #065f46;
   background: #ecfdf5;
   border-radius: 50px;
-  box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+  
+  /* 🔴 shadow rouge */
+  box-shadow: 0 5px 15px rgba(239, 68, 68, 0.4);
+
   transition: 0.3s ease;
 }
 
 .deadline span {
   font-weight: bold;
-  color: #10b981;
+  color: #ef4444; /* texte en rouge pour renforcer l'importance */
   margin-left: 5px;
 }
 
 .deadline:hover {
-  transform: scale(1.05);
-  box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+  transform: scale(1.07);
+  box-shadow: 0 10px 30px rgba(239, 68, 68, 0.6);
 }
     /*------------------*/
   </style>
