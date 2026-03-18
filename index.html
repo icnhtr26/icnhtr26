@@ -794,6 +794,12 @@
   box-shadow: 0 10px 30px rgba(239, 68, 68, 0.6);
 }
     /*------------------*/
+    /*---------logo-----*/
+    .nav-logo img {
+  width: 40px;   /* taille du logo */
+  height: 40px;
+  object-fit: contain;
+}
   </style>
 </head>
 <body>
@@ -807,7 +813,13 @@
 <!-- NAV -->
 <nav>
   <div class="nav-inner">
-    <div class="nav-logo">  <img src="tranlogo.png" alt="Conference Image">ICNHTR 2026</div>
+<!--     <div class="nav-logo">ICNHTR 2026</div>-->
+    <!-- image logo -->
+    <div class="nav-logo">
+  <img src="logo.png" alt="ICNHTR Logo">
+  <span>ICNHTR 2026</span>
+</div>
+<!-- image logo -->
     <div class="nav-links">
       <a href="#about">About</a>
       <a href="#organizer">Organizer</a>
