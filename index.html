@@ -816,6 +816,37 @@
   height: 100%;
   object-fit: cover;    /* remplit bien le cercle */
 }
+    /*sponsors*/
+    .sponsors-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 30px;
+  align-items: center;
+}
+
+.sponsor-item {
+  background: #ffffff;
+  padding: 20px;
+  border-radius: 12px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.sponsor-item img {
+  max-width: 100%;
+  max-height: 80px;
+  object-fit: contain;
+  filter: grayscale(100%);
+  transition: filter 0.3s ease;
+}
+
+.sponsor-item:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+}
+
+.sponsor-item:hover img {
+  filter: grayscale(0%);
+}
   </style>
 </head>
 <body>
@@ -1950,12 +1981,24 @@ const countdown = setInterval(() => {
 
     <h2>Our Sponsors & Partners</h2>
     <p> We would like to express our sincere gratitude to our sponsors for their generous support. Their contribution plays a crucial role in making this conference a success.</p>
-    <div class="sponsor-tier tier-platinum">
-    <!--  <div class="tier-label">🏆 Institutional Partners</div>-->
-      <div class="sponsor-logos">
-        <div class="sponsor-logo">🎓 Moulay Ismail University (UMI)</div>
-        <div class="sponsor-logo">🔬 FST Errachidia</div>
-        <div class="sponsor-logo">🏢 CNRST Morocco</div>
+    <div class="sponsors-grid">
+      <div class="sponsor-item">
+        <img src="./LOGO_FST.jpg" alt="Sponsor 1">
+      </div>
+      <div class="sponsor-item">
+        <img src="./logo2.png" alt="Sponsor 2">
+      </div>
+      <div class="sponsor-item">
+        <img src="./logo3.png" alt="Sponsor 3">
+      </div>
+      <div class="sponsor-item">
+        <img src="./logo4.png" alt="Sponsor 4">
+      </div>
+      <div class="sponsor-item">
+        <img src="./logo5.png" alt="Sponsor 5">
+      </div>
+      <div class="sponsor-item">
+        <img src="./logo6.png" alt="Sponsor 6">
       </div>
     </div>
     <!--<div class="sponsor-tier tier-gold">
