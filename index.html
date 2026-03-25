@@ -847,6 +847,42 @@
 .sponsor-item:hover img {
   filter: grayscale(0%);
 }
+    /*---index--------*/
+    .indexation-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 35px;
+  align-items: center;
+}
+
+.index-item {
+  background: white;
+  padding: 25px 15px;
+  border-radius: 16px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+  transition: all 0.3s ease;
+}
+
+.index-item img {
+  max-height: 90px;
+  margin-bottom: 10px;
+  object-fit: contain;
+  transition: transform 0.3s ease;
+}
+
+.index-item p {
+  font-size: 14px;
+  color: #777;
+}
+
+.index-item:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+}
+
+.index-item:hover img {
+  transform: scale(1.1);
+}
   </style>
 </head>
 <body>
@@ -1746,11 +1782,22 @@ const countdown = setInterval(() => {
    <!--  <span class="section-icon">📚</span> -->
     <h2>Indexation & Publication</h2>
     <p>Accepted papers from <strong>ICNHTR 2026</strong> will be published in an internationally recognized, peer-reviewed proceedings book indexed in major scientific databases:</p>
-    <div class="index-grid">
-      <div class="index-badge"><span>🔵</span> Scopus</div>
-      <div class="index-badge"><span>🔷</span> Web of Science (WoS)</div>
-      <div class="index-badge"><span>📗</span> Springer Book</div>
-      <div class="index-badge"><span>🔍</span> Google Scholar</div>
+    <div class="indexation-grid">
+      
+      <div class="index-item">
+        <img src="./springer.png" alt="Springer">
+        <p>Published by</p>
+      </div>
+
+      <div class="index-item">
+        <img src="./scopus.png" alt="Scopus">
+        <p>Indexed in</p>
+      </div>
+
+      <div class="index-item">
+        <img src="./webofscience.png" alt="Web of Science">
+        <p>Indexed in</p>
+      </div>
     </div>
     <div class="info-box">
       <p>📖 All accepted and presented papers will be published in a <strong>Springer-indexed proceedings book</strong> under SCOPUS and WOS indexation, ensuring maximum international visibility for your research.</p>
